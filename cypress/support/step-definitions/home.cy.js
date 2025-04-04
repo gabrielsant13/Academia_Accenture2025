@@ -1,9 +1,9 @@
 import { Given, When, And, Then, Before, After } from 'cypress-cucumber-preprocessor/steps'
 
-Given('que acesso o portal Tricentis - home', () => {
+Given('que o usuario acessa o portal Tricentis - home', () => {
     cy.visit('/')
 })
 
-And('navego ate a area de cadastro de automovel - home', () => {
+And('navega ate a area de cadastro de automovel - home', () => {
     cy.irAutomobile()
 })

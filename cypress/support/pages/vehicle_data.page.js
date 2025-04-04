@@ -11,7 +11,10 @@ const FUEL_TYPE = '#fuel'
 const LIST_PRICE = '#listprice'
 const LICENSE_PLATE_NUMBER = '#licenseplatenumber'
 const ANNUAL_MILEAGE = '#annualmileage'
+
 const VALIDAROBRIGATORIO = '#entervehicledata > .counter'
+
+const BTN_NEXT = '#nextenterinsurantdata'
 
 
 Cypress.Commands.add('validarPagina', pagina => {
@@ -48,4 +51,8 @@ Cypress.Commands.add('cadInfos', () => {
 
 Cypress.Commands.add('validaCamposObrigatorios', () => {
     cy.get(VALIDAROBRIGATORIO).should('contain','0')
+})
+
+Cypress.Commands.add('avancarForm', () => {
+    cy.get(BTN_NEXT).click()
 })
