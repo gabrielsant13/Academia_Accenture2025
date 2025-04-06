@@ -17,3 +17,7 @@
 import './commands'
 import './pages/home.page'
 import './pages/vehicle_data.page'
+import './pages/insurant_data.page'
+import './pages/product_data.page'
+import './pages/price_option.page'
+import './pages/send_quote.page'

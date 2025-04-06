@@ -1,58 +1,58 @@
-import faker from "faker-br"
+import { faker } from '@faker-js/faker'
 import moment from "moment"
 
-const VLD_PAGE = '#selectedinsurance'
+const seletores = {
+    MAKE: '#make',
+    ENGINE_PERFORMANCE: '#engineperformance',
+    DATE_MANUFACTURE: '#dateofmanufacture',
+    NUMBER_SEATS: '#numberofseats',
+    FUEL_TYPE: '#fuel',
+    LIST_PRICE: '#listprice',
+    LICENSE_PLATE_NUMBER: '#licenseplatenumber',
+    ANNUAL_MILEAGE: '#annualmileage',
+    BTN_NEXT: '#nextenterinsurantdata',
+    VALIDAROBRIGATORIO_VEHICLE: '#entervehicledata'
+}
 
-const MAKE = '#make'
-const ENGINE_PERFORMANCE = '#engineperformance'
-const DATE_MANUFACTURE = '#dateofmanufacture'
-const NUMBER_SEATS = '#numberofseats'
-const FUEL_TYPE = '#fuel'
-const LIST_PRICE = '#listprice'
-const LICENSE_PLATE_NUMBER = '#licenseplatenumber'
-const ANNUAL_MILEAGE = '#annualmileage'
+const variaveis = {
+    make: Math.floor(Math.random() * 14 + 1),
+    engine_performance: faker.number.int({ min: 1, max: 2000 }),
+    date_manufacture: moment(faker.date.past()).format('MM/DD/YYYY'),
+    number_seats: faker.number.int({ min: 1, max: 9 }),
+    fuel_type: faker.number.int({ min: 1, max: 5 }),
+    list_price: faker.number.int({ min: 500, max: 100000 }),
+    annual_mileage: faker.number.int({ min: 100, max: 100000 })
+}
 
-const VALIDAROBRIGATORIO = '#entervehicledata > .counter'
+const dadosSensiveis = {
+    license_plate: faker.string.alpha({ length: 3 }).toUpperCase() + faker.number.int({ min: 1000, max: 9999 })
+}
 
-const BTN_NEXT = '#nextenterinsurantdata'
-
-
-Cypress.Commands.add('validarPagina', pagina => {
-    cy.get(VLD_PAGE).should('contain', pagina)
-    cy.log('Pagina validada com sucesso')
+Cypress.Commands.add('validarPaginaVehicle', () => {
+    cy.get(seletores.VALIDAROBRIGATORIO_VEHICLE).should('be.visible')
+    cy.log('✅ Pagina validada com sucesso')
 })
 
-Cypress.Commands.add('cadInfos', () => {
-    cy.get(MAKE).select(Math.floor(Math.random() * 14 + 1))
-    cy.log('Make preenchido')
+Cypress.Commands.add('cadInfosVehicle', () => {
 
-    //cy.get(ENGINE_PERFORMANCE).type(Math.floor(Math.random() * 2000 + 1))
-    cy.get(ENGINE_PERFORMANCE).type(faker.random.number({ min: 1, max: 2000 }))
-    cy.log('Engine Performance preenchida')
+    Cypress.env('license_plate', dadosSensiveis.license_plate)
 
-    cy.get(DATE_MANUFACTURE).type(moment(faker.date.past()).format('MM/DD/YYYY'))
-    cy.log('Date of Manufacture preenchido')
-
-    cy.get(NUMBER_SEATS).select(faker.random.number({ min: 1, max: 9 }))
-    cy.log('Number of Seats preenchido')
-
-    cy.get(FUEL_TYPE).select(faker.random.number({ min: 1, max: 5 }))
-    cy.log('Fuel Type preenchido')
-
-    cy.get(LIST_PRICE).type(faker.random.number({ min: 500, max: 100000 }))
-    cy.log('List Price preenchido')
-
-    cy.get(LICENSE_PLATE_NUMBER).type(faker.random.alpha({ count: 3 }).toUpperCase() + faker.random.number({ min: 1000, max: 9999 }), {log: false})
-    cy.log('License Plate Number preenchido')
-
-    cy.get(ANNUAL_MILEAGE).type(faker.random.number({ min: 100, max: 100000 }))
-    cy.log('Annual Mileage preenchido')
+    cy.get(seletores.MAKE).select(variaveis.make)
+    cy.get(seletores.ENGINE_PERFORMANCE).type(variaveis.make)
+    cy.get(seletores.DATE_MANUFACTURE).type(variaveis.date_manufacture)
+    cy.get(seletores.NUMBER_SEATS).select(variaveis.number_seats)
+    cy.get(seletores.FUEL_TYPE).select(variaveis.fuel_type)
+    cy.get(seletores.LIST_PRICE).type(variaveis.list_price)
+    cy.get(seletores.LICENSE_PLATE_NUMBER).type(Cypress.env('license_plate'), {log: false})
+    cy.get(seletores.ANNUAL_MILEAGE).type(variaveis.annual_mileage)
+    cy.log('✅ Formulario de Vehicle Data preenchido com sucesso')
 })
 
-Cypress.Commands.add('validaCamposObrigatorios', () => {
-    cy.get(VALIDAROBRIGATORIO).should('contain','0')
+Cypress.Commands.add('validaCamposObrigatoriosVehicle', () => {
+    cy.get(seletores.VALIDAROBRIGATORIO_VEHICLE).should('contain','0')
+    cy.log('✅ Validacao de campos obrigatorios realizados')
 })
 
-Cypress.Commands.add('avancarForm', () => {
-    cy.get(BTN_NEXT).click()
+Cypress.Commands.add('avancarFormVehicle', () => {
+    cy.get(seletores.BTN_NEXT).click()
 })
