@@ -49,7 +49,7 @@ Cypress.Commands.add('cadInfosInsurant', () => {
     
     cy.get(seletores.STREET_ADDRESS).type(variaveis.streetaddress)
     cy.get(seletores.COUNTRY).select(variaveis.country)
-    cy.get(seletores.ZIPCODE).type(variaveis.zipcode)
+    cy.get(seletores.ZIPCODE).type(Cypress.env("zipcode"), {log: false})
     cy.get(seletores.CITY).type(variaveis.city)
     cy.get(seletores.OCCUPATION).select(variaveis.occupation)
 

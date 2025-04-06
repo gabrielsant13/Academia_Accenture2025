@@ -24,18 +24,12 @@ const variaveis = {
     annual_mileage: faker.number.int({ min: 100, max: 100000 })
 }
 
-const dadosSensiveis = {
-    license_plate: faker.string.alpha({ length: 3 }).toUpperCase() + faker.number.int({ min: 1000, max: 9999 })
-}
-
 Cypress.Commands.add('validarPaginaVehicle', () => {
     cy.get(seletores.VALIDAROBRIGATORIO_VEHICLE).should('be.visible')
     cy.log('✅ Pagina validada com sucesso')
 })
 
 Cypress.Commands.add('cadInfosVehicle', () => {
-
-    Cypress.env('license_plate', dadosSensiveis.license_plate)
 
     cy.get(seletores.MAKE).select(variaveis.make)
     cy.get(seletores.ENGINE_PERFORMANCE).type(variaveis.make)

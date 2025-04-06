@@ -17,28 +17,7 @@ const vairaveis = {
     comments: faker.lorem.sentence()
 }
 
-function geraSenha(){
-    const maiuscula = faker.string.alpha(1).toUpperCase();
-    const minuscula = faker.string.alpha(1).toLowerCase();
-    const numero = faker.number.int({min: 100000, max: 999999})
-    return numero+maiuscula+minuscula
-}
-
-const dadosSensiveis = {
-    email: faker.internet.email(),
-    username: faker.internet.username().replace(/[^a-zA-Z0-9.]/g, ''),
-    password: geraSenha(),
-    phone: faker.phone.number({ style: 'international' }).replace(/[^0-9]/g, '')
-}
-
-
 Cypress.Commands.add('cadInfosSend', () => {
-    
-    Cypress.env('email', dadosSensiveis.email)
-    Cypress.env('username', dadosSensiveis.username)
-    Cypress.env('password', dadosSensiveis.password)
-    Cypress.env('phone', dadosSensiveis.phone)
-
     cy.get(seletores.EMAIL).type(Cypress.env('email'), {log: false})
     cy.get(seletores.PHONE).type(Cypress.env('phone'), {log: false})
     cy.get(seletores.USERNAME).type(Cypress.env('username'), {log: false})

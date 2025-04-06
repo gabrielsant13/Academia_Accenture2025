@@ -2,7 +2,7 @@
 #language: pt
 
 Funcionalidade: Validação de fluxo com dados incompletos ou inválidos
-    Cenário: Selecionar botão Next sem escolher o Price Option
+    Cenário: Validar se o campo obrigatório da aba Price Option foi preenchido
 
         Dado que o usuario acessa o portal Tricentis - home
         E navega ate a area de cadastro de automovel - home       
