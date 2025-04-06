@@ -6,7 +6,8 @@ const seletores = {
     LATINUM: '#selectplatinum',
     ULTIMAT: '#selectultimate',
     BTN_NEXT: '#nextsendquote',
-    VALIDAROBRIGATORIO_PRICE: '#selectpriceoption'
+    VALIDAROBRIGATORIO_PRICE: '#selectpriceoption',
+    VALIDARCAMPOSOBRIGATORIOSANT: '#xLoaderPrice'
 }
 
 const variaveis = {
@@ -29,6 +30,22 @@ Cypress.Commands.add('cadInfosPrice', () => {
 Cypress.Commands.add('validaCamposObrigatoriosPrice', () => {
     cy.get(seletores.VALIDAROBRIGATORIO_PRICE).should('contain','0')
     cy.log('✅ Validacao de campos obrigatorios realizados')
+})
+
+Cypress.Commands.add('validaCamposObrigatoriosPriceNegat', () => {
+    cy.get(seletores.VALIDAROBRIGATORIO_PRICE).should('not.contain','0')
+    cy.log('❌ Campos obrigatórios não preenchidos')
+})
+
+Cypress.Commands.add('validaBotaoPriceNeg', () => {
+    cy.get(seletores.BTN_NEXT).should('not.be.visible')
+    cy.log('❌ Botão NEXT não visível')
+})
+
+Cypress.Commands.add('validaCamposObgAntNeg', () => {
+    cy.get(seletores.VALIDARCAMPOSOBRIGATORIOSANT).find('p')
+      .should('contain','Please, complete the first three steps to see the price table.')
+    cy.log('❌ Algum Campo anterior a esta aba não foi preenchido')
 })
 
 Cypress.Commands.add('avancarFormPrice', () => {

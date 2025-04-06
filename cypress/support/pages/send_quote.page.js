@@ -26,7 +26,7 @@ function geraSenha(){
 
 const dadosSensiveis = {
     email: faker.internet.email(),
-    username: faker.internet.username(),
+    username: faker.internet.username().replace(/[^a-zA-Z0-9.]/g, ''),
     password: geraSenha(),
     phone: faker.phone.number({ style: 'international' }).replace(/[^0-9]/g, '')
 }

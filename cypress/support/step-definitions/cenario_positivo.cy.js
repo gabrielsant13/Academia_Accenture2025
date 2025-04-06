@@ -1,4 +1,4 @@
-import { Given, When, And, Then, Before, After } from 'cypress-cucumber-preprocessor/steps'
+import { Given, When, And, Then } from 'cypress-cucumber-preprocessor/steps'
 
 Given('que o usuario acessa o portal Tricentis - home', () => {
     cy.visit('/')
@@ -8,7 +8,7 @@ And('navega ate a area de cadastro de automovel - home', () => {
     cy.irAutomobile()
 })
 
-When('o usuario valida a pagina - vehicle_data', () => {
+And('o usuario valida a aba - vehicle_data', () => {
     cy.validarPaginaVehicle()
 })
 
@@ -18,9 +18,6 @@ And('preenche a aba Enter Vehicle Data - vehicle_data', () => {
 
 And('valida se os campos obrigatorios estao preenchidos - vehicle_data', () => {
     cy.validaCamposObrigatoriosVehicle()
-})
-
-And('avanca para a pagina seguinte - vehicle_data', () => {
     cy.avancarFormVehicle()
 })
 
@@ -30,9 +27,6 @@ And('preenche a aba Enter Insurance Data - insurant_data', () => {
 
 And('valida se os campos obrigatorios estao preenchidos - insurant_data', () => {
     cy.validaCamposObrigatoriosInsurant()
-})
-
-And('avanca para a pagina seguinte - insurant_data', () => {
     cy.avancarFormInsurant()
 })
 
@@ -42,9 +36,6 @@ And('preenche a aba Enter Product Data - product_data', () => {
 
 And('valida se os campos obrigatorios estao preenchidos - product_data', () => {
     cy.validaCamposObrigatoriosProduct()
-})
-
-And('avanca para a pagina seguinte - product_data', () => {
     cy.avancarFormProduct()
 })
 
@@ -52,11 +43,8 @@ And('preenche a aba Select Price Option - price_option', () => {
     cy.cadInfosPrice()
 })
 
-And('valida se os campos obrigatorios estao preenchidos - price_option', () => {
+And('valida se todos os campos obrigatorios estao preenchidos - price_option', () => {
     cy.validaCamposObrigatoriosPrice()
-})
-
-And('avanca para a pagina seguinte - price_option', () => {
     cy.avancarFormPrice()
 })
 
@@ -68,10 +56,10 @@ And('valida se os campos obrigatorios estao preenchidos - send_quote', () => {
     cy.validaCamposObrigatoriosSend()
 })
 
-Then('o usuario clica no botao Send - send_quote', () => {
+When('o usuario clica no botao Send - send_quote', () => {
     cy.enviarFormSend()
 })
 
-And('o usuario ver a mensagem de sucesso - send_quote', () => {
+Then('o usuario ver a mensagem de sucesso - send_quote', () => {
     cy.validaEnvio()
 })
