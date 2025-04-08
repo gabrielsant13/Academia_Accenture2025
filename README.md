@@ -2,6 +2,8 @@
 
 Este repositório contém um conjunto de testes automatizados para testar uma página web utilizando o Cypress. O Cypress é uma ferramenta moderna para testes end-to-end que facilita a criação, execução e depuração de testes.
 
+Apresentação: https://youtu.be/1k5KiHfhvGA
+
 ## Índice
 
 - [Pré-requisitos](#pré-requisitos)
